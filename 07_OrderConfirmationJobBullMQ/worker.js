@@ -5,7 +5,7 @@ const worker = new Worker(
   "emails",
   async (job) => {
     console.log("Processing Email Job : ");
-    setTimeout(() => {}, 1500);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     console.log("Email Job Completed : ");
   },
   { connection },
@@ -17,6 +17,3 @@ worker.on("completed", (job) => {
 worker.on("failed", (job) => {
   console.log("Job Failed ", job.id, job.name, job.data);
 });
-
-
-
